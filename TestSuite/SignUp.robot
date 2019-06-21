@@ -10,7 +10,7 @@ Resource          ../TestResources/SignUp_resource.robot
 
 *** Test Cases ***
 Validating New User Sign Up
-    [Documentation]    Validating if a new user can sign up
+    [Documentation]    Validating if a new user can signup
     [Tags]    Critical
     Navigate To Sign Up Page
     ${email}=    FakerLibrary.Email
