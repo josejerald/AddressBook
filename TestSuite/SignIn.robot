@@ -1,4 +1,5 @@
 *** Settings ***
+Test Teardown     Close All Browsers
 Library           SeleniumLibrary
 Library           ../Common/Common_library.py
 Resource          ../Common/Common_resource.robot
