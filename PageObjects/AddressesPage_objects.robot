@@ -21,10 +21,16 @@ ${InterestReadXPath}    xpath://*[@id="address_interest_read"]
 ${NotesXPath}     xpath://*[@id="address_note"]
 ${NewAddressSubmitXPath}    xpath://*[@class="btn btn-primary"]
 ${AddressListXPath}    xpath:/html/body/div/a
+${UpdateAddressXPath}    xpath://input[@class="btn btn-primary"]
 
 *** Keywords ***
 Click On New Address Link
     Click Element    ${NewAddressLinkXPath}
+
+Click On Edit Button
+    [Arguments]    ${firstName}
+    Click Element    xpath://*[text()="${firstName}"]//following::a[2]
+    Wait Until Page Contains    Editing Address
 
 Enter First Name
     [Arguments]    ${text}
@@ -46,18 +52,9 @@ Enter City
     [Arguments]    ${text}
     Input Text    ${CityXPath}    ${text}
 
-Select State From List
-    [Arguments]    ${text}
-    Select From List By Label    ${StateXPath}    ${text}
-
 Enter Zipcode
     [Arguments]    ${text}
     Input Text    ${ZipCodeXPath}    ${text}
-
-Select Country
-    [Arguments]    ${value}
-    Run Keyword If    '${value}'=='us'    Click Element    ${CountryUSXPath}
-    Run Keyword If    '${value}'=='can'    Click Element    ${CountryCANXPath}
 
 Enter Birthday
     [Arguments]    ${text}
@@ -71,9 +68,21 @@ Enter Age
     [Arguments]    ${text}
     Input Text    ${AgeXPath}    ${text}
 
+Select State From List
+    [Arguments]    ${text}
+    Select From List By Label    ${StateXPath}    ${text}
+
+Select Country
+    [Arguments]    ${value}
+    Run Keyword If    '${value}'=='us'    Click Element    ${CountryUSXPath}
+    Run Keyword If    '${value}'=='can'    Click Element    ${CountryCANXPath}
+
 Select Image
     [Arguments]    ${filePath}
     Choose File    ${PictureXPath}    ${filePath}
 
 Save New Address
     Click Element    ${NewAddressSubmitXPath}
+
+Update The New Address
+    Click Element    ${UpdateAddressXPath}

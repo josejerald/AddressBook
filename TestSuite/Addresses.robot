@@ -1,4 +1,5 @@
 *** Settings ***
+Test Teardown     Close All Browsers
 Library           SeleniumLibrary
 Library           ../Common/Common_library.py
 Library           FakerLibrary    locale=en_US
@@ -19,4 +20,14 @@ Enter And Save New Address
     Sign In As    ${Credential}[email]    ${Credential}[password]
     Open New Address Entry Page
     Enter And Save New Address
+    Validate The Address Is Saved
+
+Edit And Delete An Address
+    [Documentation]    Validating if user can edit and delete an address
+    [Tags]    Critical
+    Sign In As    ${Credential}[email]    ${Credential}[password]
+    Open New Address Entry Page
+    Enter And Save New Address
+    Open Addresses Page
+    Edit The Address    ${fName}
     Validate The Address Is Saved
