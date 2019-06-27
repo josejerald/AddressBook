@@ -18,9 +18,16 @@ Enter And Save New Address
     Select Image    ${root}\\TestData\\ProfilePic.JPG
     Save New Address
 
+Delete The Address
+    [Arguments]    ${firstName}
+    Click on Delete Button in Address Page    ${firstname}
+    Handle Alert
+    Wait Until Page Contains    Addresses
+
 Edit The Address
     [Arguments]    ${firstName}
-    Click On Edit Button    ${firstName}
+    Click On Edit Button In Address Page    ${firstName}
+    Wait Until Page Contains    Editing Address
     ${City}=    FakerLibrary.City
     Set Global Variable    ${City}
     Enter City    ${City}
@@ -43,3 +50,16 @@ Validate The Address Is Saved
     Click On Addresses
     Wait Until Page Contains    ${fName}
     Wait Until Page Contains    ${City}
+
+Validate The Address Is Deleted
+    Page Should Not Contain    ${fName}
+    Element Should Contain    ${DeleteConfirmationMsgXPath}    Address was successfully destroyed.
+
+Validate The Page Contains The Address
+    Wait Until Page Contains    ${fName}
+    Wait Until Page Contains    ${City}
+
+View The Address
+    [Arguments]    ${firstName}
+    Click On Show Button In Address Page    ${firstName}
+    Wait Until Page Contains    First name
