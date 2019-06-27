@@ -1,6 +1,6 @@
 *** Variables ***
 ${browser}        Chrome
-${root}           C:\\Dev Works\\Python\\RideProjects\\AddressBook
+${root}           C:\\Dev Works\\Python\\RideProjects\\AdBookGit
 
 *** Keywords ***
 Access Addressbook Home Page

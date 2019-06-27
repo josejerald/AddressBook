@@ -22,8 +22,8 @@ Enter And Save New Address
     Enter And Save New Address
     Validate The Address Is Saved
 
-Edit And Delete An Address
-    [Documentation]    Validating if user can edit and delete an address
+Edit An Address
+    [Documentation]    Validating if user can edit an address
     [Tags]    Critical
     Sign In As    ${Credential}[email]    ${Credential}[password]
     Open New Address Entry Page
@@ -31,3 +31,29 @@ Edit And Delete An Address
     Open Addresses Page
     Edit The Address    ${fName}
     Validate The Address Is Saved
+    [Teardown]    Run Keywords    Open Addresses Page
+    ...    AND    Delete The Address    ${fName}
+    ...    AND    Close All Browsers
+
+Delete An Address
+    [Documentation]    Validating if user can delete an address
+    [Tags]    Critical
+    Sign In As    ${Credential}[email]    ${Credential}[password]
+    Open New Address Entry Page
+    Enter And Save New Address
+    Open Addresses Page
+    Delete The Address    ${fName}
+    Validate The Address Is Deleted
+
+Show An Address
+    [Documentation]    Validating if user can delete an address
+    [Tags]    Critical
+    Sign In As    ${Credential}[email]    ${Credential}[password]
+    Open New Address Entry Page
+    Enter And Save New Address
+    Open Addresses Page
+    View The Address    ${fName}
+    Validate The Page Contains The Address
+    [Teardown]    Run Keywords    Open Addresses Page
+    ...    AND    Delete The Address    ${fName}
+    ...    AND    Close All Browsers

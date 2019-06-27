@@ -22,15 +22,23 @@ ${NotesXPath}     xpath://*[@id="address_note"]
 ${NewAddressSubmitXPath}    xpath://*[@class="btn btn-primary"]
 ${AddressListXPath}    xpath:/html/body/div/a
 ${UpdateAddressXPath}    xpath://input[@class="btn btn-primary"]
+${DeleteConfirmationMsgXPath}    xpath:/html/body/div/div
 
 *** Keywords ***
 Click On New Address Link
     Click Element    ${NewAddressLinkXPath}
 
-Click On Edit Button
+Click On Edit Button In Address Page
     [Arguments]    ${firstName}
     Click Element    xpath://*[text()="${firstName}"]//following::a[2]
-    Wait Until Page Contains    Editing Address
+
+Click On Delete Button In Address Page
+    [Arguments]    ${firstName}
+    Click Element    xpath://*[text()="${firstName}"]//following::a[3]
+
+Click On Show Button In Address Page
+    [Arguments]    ${firstName}
+    Click Element    xpath://*[text()="${firstName}"]//following::a[1]
 
 Enter First Name
     [Arguments]    ${text}
